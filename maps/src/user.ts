@@ -1,16 +1,20 @@
 import faker from 'faker';
+import { IMapPosition } from './position';
+
 
 export class User {
     name: string;
-    location: {
-        lat: number;
-        lng: number;
-    };
+    location: IMapPosition
+
     constructor() {
         this.name = faker.name.firstName();
         this.location = {
-            lat: parseFloat(faker.address.latitude()),
-            lng: parseFloat(faker.address.longitude())
-        };
+            lng: parseFloat(faker.address.latitude()),
+            lat: parseFloat(faker.address.longitude())
+        }
+    }
+
+    toString(): string {
+        return `Hallo, <br> <b>${this.name}</b>`;
     }
 }
