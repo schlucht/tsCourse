@@ -1,8 +1,8 @@
-import { User } from './model/user';
+import axios from 'axios'
+import {User} from './model/user'
 
-const user = new User({ name: 'Lothar', age: 52 });
-console.log(user.get('name'));
-console.log(user.get('age'));
-user.set({ name: 'Janina' });
-console.log(user.get('name'));
-console.log(user.get('age'));
+const user = new User({name: 'Janina', age: 45})
+user.events.on('change', () => {
+    console.log('change')
+})
+user.events.trigger('change')

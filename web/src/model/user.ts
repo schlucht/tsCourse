@@ -1,21 +1,28 @@
-interface UserProps {
-    name?: string;
-    age?: number;
+import axios, { AxiosResponse } from "axios";
+import { Eventing } from "./eventing";
+
+export interface UserProps {
+  id?: number;
+  name?: string;
+  age?: number;
 }
 
-type Callback = () => {};
+
 
 export class User {
-    events: { [key: string]: Callback[] } = {};
-    
-    constructor(private data: UserProps) {}
+  
+    public events: Eventing = new Eventing()
 
-    get(propName: string): number | string {
-        return this.data[propName];
-    }
+  constructor(private data: UserProps) {}
 
-    set(update: UserProps): void {
-        Object.assign(this.data, update);
-    }
-    on(eventName: string, collback: Callback): void {}
+  get(propName: string): number | string {
+    return this.data[propName];
+  }
+
+  set(update: UserProps): void {
+    Object.assign(this.data, update);
+  }
+  
+
+  
 }
