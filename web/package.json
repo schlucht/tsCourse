@@ -7,7 +7,7 @@
         "axios": "^0.19.2"
     },
     "scripts": {
-        "start:db": "json-db -w db.json",
+        "start:db": "json-server -w db.json",
         "start:parcel": "parcel index.html"
     },
     "keywords": [],

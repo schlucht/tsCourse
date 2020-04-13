@@ -1,30 +1,21 @@
-import axios, {AxiosResponse} from 'axios'
-import {UserProps} from './user'
+import axios, { AxiosResponse, AxiosPromise } from 'axios';
 
-export class Sync<T> {
-
+interface IHasId {
+    id?: number;
+}
+export class Sync<T extends IHasId> {
     constructor(public rootUrl: string) {}
 
-    fetch(data: UserProps): AxiosResponse<UserProps> {
-       return axios
-          .get(`${this.rootUrl}/${data.id}`)
-          .then((response: AxiosResponse<UserProps>) => {
-            return response.data as UserProps;
-          });
-      }
-    
-      save(data: UserProps): AxiosResponse<UserProps> {
-        const id = data.id;
+    fetch(id: number): AxiosPromise<AxiosResponse<T>> {
+        return axios.get(`${this.rootUrl}/${id}`);
+    }
+
+    save(data: T): AxiosPromise<AxiosResponse<T>> {
+        const { id } = data;
         if (id) {
-          axios.put(`${this.rootUrl}/${id}`, data)
-          .then((res: AxiosResponse<UserProps>) => {
-              return res
-          })
+            return axios.put(`${this.rootUrl}/${id}`, data);
         } else {
-          axios.post<AxiosResponse<UserProps>>(`${this.rootUrl}/users`, data)
-          .then((res:AxiosResponse<UserProps>) => {
-              return res;
-          })
+            return axios.post<AxiosResponse<T>>(`${this.rootUrl}/users`, data);
         }
-      }
+    }
 }
