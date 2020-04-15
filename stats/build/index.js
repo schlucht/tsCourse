@@ -1,2 +1,13 @@
 "use strict";
-console.log('Hallo');
+Object.defineProperty(exports, "__esModule", { value: true });
+var csvFileReader_1 = require("./csvFileReader");
+var bankReader_1 = require("./bankReader");
+var consoleReport_1 = require("./reports/consoleReport");
+var sumInAmount_1 = require("./analyzer/sumInAmount");
+var summery_1 = require("./summery");
+var csvReader = new csvFileReader_1.CsvFileReader('Januar.csv', ';');
+var bankReader = new bankReader_1.BankReader(csvReader);
+bankReader.load();
+console.log(bankReader.matches);
+var summery = new summery_1.Summery(new sumInAmount_1.SumInAmount(), new consoleReport_1.ConsoleReport());
+console.log(summery.buildAndReport(bankReader.matches));
