@@ -1,4 +1,5 @@
 import { BankData } from './bankData';
+import { CsvFileReader } from './csvFileReader';
 
 interface IDataReader {
     read(): void;
@@ -6,9 +7,14 @@ interface IDataReader {
 }
 
 export class BankReader {
+    static fromCsv(fileName: string): BankReader {
+        return new BankReader(new CsvFileReader(fileName, ';'));
+    }
     matches: BankData[] = [];
-    constructor(public reader: IDataReader) {}
-    load(): void {
+    constructor(public reader: IDataReader) {
+        this.load();
+    }
+    private load(): void {
         this.reader.read();
         this.matches = this.reader.data.map(
             (row: string[]): BankData => {
