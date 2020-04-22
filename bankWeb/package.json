@@ -1,10 +1,10 @@
 {
-    "name": "bankWeb",
+    "name": "bankweb",
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start": "parcel index.html"
+        "start": "parcel watch index.html"
     },
     "keywords": [],
     "author": "",
