@@ -39,13 +39,14 @@ var BankParameterList = /** @class */ (function () {
         var exist = this._list.find(function (f) {
             return f.className === name;
         });
-        if (exist === undefined) {
+        if (!exist) {
             this._list.push(param);
         }
         else {
             // Prüft ob ein Wert schon in der Parameterliste existiert
             params.forEach(function (p) {
-                if ((exist === null || exist === void 0 ? void 0 : exist.paramNames.indexOf(p)) < 0) {
+                var b = exist === null || exist === void 0 ? void 0 : exist.paramNames.indexOf(p);
+                if (b === undefined || b < 0) {
                     exist === null || exist === void 0 ? void 0 : exist.paramNames.push(p);
                 }
             });

@@ -1,4 +1,3 @@
-import { Cipher } from 'crypto';
 
 export interface IBankParameter {
     className: string;
@@ -36,12 +35,13 @@ export class BankParameterList {
             return f.className === name;
         });
 
-        if (exist === undefined) {
+        if (!exist) {
             this._list.push(param);
         } else {
             // Prüft ob ein Wert schon in der Parameterliste existiert
             params.forEach((p: string) => {
-                if (exist?.paramNames.indexOf(p) < 0) {
+                let b = exist?.paramNames.indexOf(p);
+                if (b === undefined || b < 0) {
                     exist?.paramNames.push(p);
                 }
             });
