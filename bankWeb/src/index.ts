@@ -50,4 +50,3 @@ for (let dat of dates) {
     tbl.append(tr);
 }
 app.append(tbl);
-g
