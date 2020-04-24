@@ -1,3 +1,19 @@
 body {
     background-color: rgb(167, 167, 167);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.tbl_data {
+    border: solid 2px black;
+    background-color: white;
+    border-spacing: 0;
+    th {
+        border-bottom: solid 2px black;
+        font-size: 1.5rem;
+    }
+    td {
+        border: none;
+        padding: 1.2rem;
+        width: 33%;
+    }
 }
