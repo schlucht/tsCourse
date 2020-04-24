@@ -12,3 +12,11 @@ export const monthName = [
     'November',
     'Dezember'
 ];
+
+export const formatDate = (date: Date): string => {
+    return date.toDateString();
+};
+
+export const formatCurrency = (date: number): string => {
+    return (date < 0 ? date * -1 : date).toFixed(2) + ' sFr';
+};
