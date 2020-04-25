@@ -14,7 +14,8 @@ export const monthName = [
 ];
 
 export const formatDate = (date: Date): string => {
-    return date.toDateString();
+    
+    return date.toLocaleDateString();
 };
 
 export const formatCurrency = (date: number): string => {

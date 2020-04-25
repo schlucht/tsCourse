@@ -1,14 +1,15 @@
 import { IBankData } from "../model/bankData";
 import { formatDate, formatCurrency } from '../utils/dateUtils';
+import { BankSummary } from '../model/bankSummary';
 
 export class RenderTable {
 
     
 
-    constructor(private data: IBankData[], private tblRoot: HTMLTableElement) {
-        this.renderHeader()
+    constructor(private data: BankSummary, private tblRoot: HTMLTableElement) {
+        // this.renderHeader()
         this.renderThContent()
-        this.renderTDContent(this.data);
+        this.renderTDContent(this.data.bankData);
         this.renderFooter()
 
     }
@@ -30,36 +31,41 @@ export class RenderTable {
     private renderTDContent(data: IBankData[]): void {
         let tr: HTMLTableRowElement
         let btn: HTMLButtonElement
-        if (data.length > 0) {
+        if (data) {
             for (let dat of data) {
                 tr = document.createElement('tr') as HTMLTableRowElement
-
                 btn = document.createElement('button');
                 btn.id = `details_${dat.id}`;
                 btn.innerText = 'Details';
                 btn.addEventListener('click', event => {
-                    console.log(event.target);
+                    console.log(dat);
                 });
+                let td
+                
+                    td = document.createElement('td')
+                    
+               
                 tr.innerHTML = `       
                     <td>${formatDate(dat.date)}</td>
                     <td>${dat.text}</td>
                     <td>${formatCurrency(dat.amount)}</td>
-                    <td>${dat.ballance}</td>
+                    <td>${formatCurrency(dat.ballance)}</td>
                     <td>${formatDate(dat.datePay)}</td>
                     <td style="color: ${dat.isCashOut ? 'red' : 'green'}">
                         ${dat.isCashOut ? '-' : '+'}
-                    </td>    
-                    <td>${btn.outerHTML}</td>
+                    </td>  
                 `;
+                td.appendChild(btn)             
+                tr.appendChild(td)
                 this.tblRoot.append(tr);
             }
         }
     }
-    private renderHeader(): void {
-        const header = document.createElement('thead') as HTMLTableSectionElement
-        header.innerHTML = `<h1>Hier der Titel der Tabelle</h1>`
-        this.tblRoot.appendChild(header)
-    }
+    // private renderHeader(): void {
+    //     const header = document.createElement('thead') as HTMLTableSectionElement
+    //     header.innerHTML = `<h1>Hier der Titel der Tabelle</h1>`
+    //     this.tblRoot.appendChild(header)
+    // }
     private renderFooter() {
         const footer = document.createElement('tfoot') as HTMLTableSectionElement     
         const tr = document.createElement('tr')   
