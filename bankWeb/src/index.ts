@@ -13,6 +13,7 @@ const  bg = new BankGroupMonth()
 const grp = bg.createGroup(groupsMonth)
 const app = document.getElementById('app')! as HTMLDivElement;
 const tbl = document.createElement('table')! as HTMLTableElement;
+tbl.className = "g"
 for (let g of grp ) {
     new RenderTable(g, tbl)
 }

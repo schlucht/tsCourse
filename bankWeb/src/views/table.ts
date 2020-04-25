@@ -10,7 +10,7 @@ export class RenderTable {
         // this.renderHeader()
         this.renderThContent()
         this.renderTDContent(this.data.bankData);
-        this.renderFooter()
+        this.renderFooter(125, 125)
 
     }
 
@@ -19,10 +19,10 @@ export class RenderTable {
         const tr = document.createElement('tr')
         tr.innerHTML = ` <th>Datum</th>
         <th>Beschreibung</th>
-        <th>Beträge</th>
-        <th>Kommuliert</th>
-        <th>Bezahlt am</th>
-        <th>Ausgaben</th>    
+        <th>Ausgaben</th>
+        <th>Einnahmen</th>
+        <th>Komuliert</th>
+        <th>-</th>    
         `
         thead.appendChild(tr)
         this.tblRoot.appendChild(thead)
@@ -46,13 +46,13 @@ export class RenderTable {
                     
                
                 tr.innerHTML = `       
-                    <td>${formatDate(dat.date)}</td>
-                    <td>${dat.text}</td>
-                    <td>${formatCurrency(dat.amount)}</td>
-                    <td>${formatCurrency(dat.ballance)}</td>
-                    <td>${formatDate(dat.datePay)}</td>
-                    <td style="color: ${dat.isCashOut ? 'red' : 'green'}">
-                        ${dat.isCashOut ? '-' : '+'}
+                    <td class="tbl-date">${formatDate(dat.date)}</td>
+                    <td class="tbl-text">${dat.text}</td>
+                    <td class="tbl-currency">${dat.isCashOut ? formatCurrency(dat.amount) : "-"}</td>
+                    <td class="tbl-currency"">${dat.isCashOut ? "-" : formatCurrency(dat.amount)}</td>
+                    <td class="tbl-currency">${formatCurrency(dat.ballance)}</td>
+                    <td class="tbl-cashout">
+                        <span class="${dat.isCashOut ? "tbl___iscashout" : "tbl___iscashin"}"></span>
                     </td>  
                 `;
                 td.appendChild(btn)             
@@ -66,21 +66,16 @@ export class RenderTable {
     //     header.innerHTML = `<h1>Hier der Titel der Tabelle</h1>`
     //     this.tblRoot.appendChild(header)
     // }
-    private renderFooter() {
+    private renderFooter(currOut: number, currIn: number) {
         const footer = document.createElement('tfoot') as HTMLTableSectionElement     
         const tr = document.createElement('tr')   
 
         footer.innerHTML = `
         <tr>
-            <td></td>
-            <td>Einnahmen</td>            
-            <td>69879</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>Ausgaben</td>            
-            <td>87990</td>
-        </tr>
+            <td class="tbl-footer" colspan="2">Total: </td>
+            <td class="tbl-currency">${currOut}</td>            
+            <td class="tbl-currency">${currIn}</td>            
+        </tr>        
         `
 
         this.tblRoot.appendChild(footer)
