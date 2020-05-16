@@ -1,0 +1,87 @@
+
+// Tablecolors
+$white: #fff;
+$black: #000;
+
+$border: #c0c0c0;
+$bg-row: #c7c9cf;
+
+
+
+.tbl {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0px 5px 15px rgba($black, 0.1),
+        -0px -5px 15px rgba($black, 0.1);
+
+
+    thead,
+    tfoot {
+        font-size: 1.6rem;
+        border-bottom: 2px $border solid;
+    }
+    tfoot {
+        border: none;
+    }
+
+    th {
+        padding: 0.5rem;
+        border-right: 1px $border solid;
+    }
+    tbody {
+        font-size: 1.2rem;
+    }
+
+    tbody tr {
+        border-bottom: 1px $border dashed;
+    }
+    tbody tr:nth-child(odd) {
+        background-color: rgba($bg-row, 0.3);
+    }
+    tbody tr:hover {
+        border-bottom: 2px $border solid;
+    }
+    td {
+        padding: 0.4rem;
+        border-right: 1px $border solid;
+    }
+    td:last-child {
+        border-right: none;
+    }
+    .tbl-date,
+    .tbl-cashout {
+        text-align: center;
+    }
+    .tbl-cashout {
+        position: relative;
+    }
+    .tbl-currency {
+        text-align: right;
+    }
+    .tbl-text {
+        text-align: left;
+    }
+    .tbl___iscashout::before {
+        content: '';
+        position: absolute;
+        width: 1.2rem;
+        height: 1.2rem;
+        background-color: $red;
+        border-radius: 50%;
+        left: 0.4rem;
+        top: 0.4rem;
+    }
+    .tbl___iscashin::before {
+        content: '';
+        position: absolute;
+        width: 1.2rem;
+        height: 1.2rem;
+        background-color: $green;
+        border-radius: 50%;
+        left: 0.4rem;
+        top: 0.4rem;
+    }
+    .tbl-footer {
+        text-align: right;
+    }
+}

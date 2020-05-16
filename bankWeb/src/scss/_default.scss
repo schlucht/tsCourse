@@ -1,0 +1,55 @@
+/************************************************
+**
+** Standardstyle
+**
+**************************************************/
+$bg-color: #b8e7db;
+$title-color: darkgreen;
+
+$red: #ff5b67;
+$green: #2d8f1f;
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+body {
+    font-size: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+h1 {
+    font-size: 2.4rem;
+}
+
+
+header {
+    background-color: $bg-color;
+    padding: 3rem;
+    color: $title-color;
+    border-bottom: 2px silver solid;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+}
+section, main, sidebar {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+main {
+    height: 100vh;
+}
+
+aside {
+    height: 100vh;
+}
+
+footer {
+    background-color: $bg-color;
+    background-color: $bg-color;
+    padding: 3rem;
+    color: $title-color;
+    border-bottom: 2px silver solid;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+    font-size: 1.2rem;
+}

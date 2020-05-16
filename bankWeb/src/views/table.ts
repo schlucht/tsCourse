@@ -31,6 +31,7 @@ export class RenderTable {
     private renderTDContent(data: IBankData[]): void {
         let tr: HTMLTableRowElement
         let btn: HTMLButtonElement
+        const thead = document.createElement('tbody')
         if (data) {
             for (let dat of data) {
                 tr = document.createElement('tr') as HTMLTableRowElement
@@ -57,9 +58,11 @@ export class RenderTable {
                 `;
                 td.appendChild(btn)             
                 tr.appendChild(td)
-                this.tblRoot.append(tr);
+                thead.appendChild(tr)
             }
+            this.tblRoot.append(thead);
         }
+
     }
     // private renderHeader(): void {
     //     const header = document.createElement('thead') as HTMLTableSectionElement
